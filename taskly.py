@@ -48,36 +48,22 @@ def list_task(database, status=None):
     for task in filtered:
         print(f"[{task['id']}] {task['status']:<12} {task['description']:<25} ({task['created_at']})")
 
+def update_task(database, task_id, new_description=None, new_status=None):
+    for task in database:
+        if task['id'] == task_id:
+            if new_description is not None:
+                task['description'] = new_description
+            if new_status is not None:
+                task['status'] = new_status
+            return task
+    return None
+
+
 file_path = 'tasks.json'
 database = load_database(file_path)
 
 
-def update_task(database, task_id, new_description):
-    for task in database:
-        if task['id'] == task_id:
-            task['description'] = new_description
-            return task
-    return None
 
-def mark_in_progress(database, task_id):
-    for task in database:
-        if task['id'] == task_id:
-            task['status'] = 'in-progress'
-            return task
-    return None
 
-def mark_done(database, task_id):
-    for task in database:
-        if task['id'] == task_id:
-            task['status'] = 'done'
-            return task
-    return None
-
-file_path = 'tasks.json'
-database = load_database(file_path)
-
-update_task(database, 2, 'take dinner')
-mark_done(database, 3)
-mark_in_progress(database, 2)
 save_database(database, file_path)
 list_task(database)
