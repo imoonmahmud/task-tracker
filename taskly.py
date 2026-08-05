@@ -32,12 +32,24 @@ def add_task(database, description):
         'status': 'todo',
         'created_at': today
     }
+    
     database.append(task)
     return task
 
+def list_task(database, status=None):
+    if status is None or status == 'all':
+        filtered = database
+    else:
+        filtered = [task for task in database if task['status'] == status]
+
+    if not filtered:
+        print('No tasks found.')
+        return
+    for task in filtered:
+        print(f"[{task['id']}] {task['status']:<12} {task['description']:<25} ({task['created_at']})")
+
 file_path = 'tasks.json'
 database = load_database(file_path)
-new_task = add_task(database, 'Go to teach Hamim')
-save_database(database, file_path)
-print(f'Task added successfully (id: {new_task['id']})')
+list_task(database, status='done')
+
 
