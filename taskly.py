@@ -1,5 +1,7 @@
 import argparse
 import json
+from datetime import datetime
+
 
 parser = argparse.ArgumentParser(description='Taskly - a task manager')
 subparsers = parser.add_subparsers(dest='command')
@@ -19,9 +21,23 @@ def save_database(database, path):
     with open(path, 'w', encoding='utf-8') as file:
         json.dump(database, file, indent=4)
 
-tasks = load_database('tasks.json')
-print(tasks)
+def add_task(database, description):
+    existing_ids = [task['id'] for task in database]
+    next_id = max(existing_ids) + 1 if existing_ids else 1
+    today = datetime.now().strftime('%Y-%m-%d')
 
-tasks.append({"id": 1, "description": "test task", "status": "todo", "created_at": "2026-08-05"})
-save_database(tasks, "tasks.json")
+    task = {
+        'id': next_id,
+        'description': description,
+        'status': 'todo',
+        'created_at': today
+    }
+    database.append(task)
+    return task
+
+file_path = 'tasks.json'
+database = load_database(file_path)
+new_task = add_task(database, 'Go to teach Hamim')
+save_database(database, file_path)
+print(f'Task added successfully (id: {new_task['id']})')
 
