@@ -58,6 +58,12 @@ def update_task(database, task_id, new_description=None, new_status=None):
             return task
     return None
 
+def delete_task(database, task_id):
+    new_database = [task for task in database if task['id'] != task_id]
+    if len(new_database) == len(database):
+        return False
+    database[:] = new_database
+    return True
 
 file_path = 'tasks.json'
 database = load_database(file_path)
@@ -65,5 +71,5 @@ database = load_database(file_path)
 
 
 
+
 save_database(database, file_path)
-list_task(database)
