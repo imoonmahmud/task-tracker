@@ -1,6 +1,6 @@
 # CLI TODO App
 
-[Taskly][https://roadmap.sh/projects/task-tracker] is a simple command-line task manager built in Python. Add, list, update, and track tasks, all stored locally in a JSON file.
+Taskly is a simple command-line task manager built in Python. Add, list, update, and track tasks, all stored locally in a JSON file.
 
 Built as a learning project to practice file I/O, JSON handling, and building command-line interfaces with `argparse`.
 
