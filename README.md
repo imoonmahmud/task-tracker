@@ -13,18 +13,11 @@ Built as a learning project to practice file I/O, JSON handling, and building co
 - Delete tasks
 - Tasks persist between runs in a local `tasks.json` file
 
-## Requirements
-
-- Python 3.12+
-- No external dependencies (standard library only: `argparse`, `json`, `datetime`)
-
 ## Installation
 
 ```bash
 git clone https://github.com/imoonmahmud/task-tracker.git
 ```
-
-No `pip install` needed — Taskly only uses Python's built-in modules.
 
 ## Usage
 
