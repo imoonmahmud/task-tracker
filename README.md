@@ -1,4 +1,4 @@
-# Taskly: CLI TODO App
+# CLI TODO App
 
 Taskly is a simple command-line task manager built in Python. Add, list, update, and track tasks, all stored locally in a JSON file.
 
